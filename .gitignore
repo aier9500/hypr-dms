@@ -1,0 +1,5 @@
+# DMS auto-generated
+hypr/dms/**
+hypr/.dms-backups/
+# Hyprland: per-machine configs, scaffolded from hypr/template/*
+hypr/user/*
