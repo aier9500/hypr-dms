@@ -1,6 +1,6 @@
 # hypr-dms: Niri + DMS dotfiles ported to Hyprland + DMS
 
-Plan: 2026-10-17. Status: COUNCIL-AMENDED, awaiting go/no-go.
+Plan: 2026-10-17. Status: EXECUTED 2026-10-17; untested on hardware (see ROADMAP).
 
 **Goal** — A sibling repo `~/Projects/hypr-dms` (GitHub `aier9500/hypr-dms`) that gives a Hyprland
 0.56+ user the same experience `niri-dms` gives a Niri user: DMS as shell, the same keybind layout,

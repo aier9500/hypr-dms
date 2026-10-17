@@ -4,7 +4,7 @@ Single TODO list and change log. Setup and keybinds live in `README.md`.
 
 ## TODO
 
-- [ ] First-boot test on hardware: dankswitcher confirm on Alt release, gesture feel, master layout defaults, OpenWhispr native backend.
+- [ ] First-boot test on hardware: dankswitcher confirm on Alt release, gesture feel, master layout defaults, OpenWhispr native backend and its `pcall(require)` edit to `hyprland.lua`, `toggle_float_centered` monitor fields, `dms:` layer namespaces.
 - [ ] Wallpapers: link to niri-dms (current), git-lfs, or copy.
 - [ ] Layout-aware `Mod+Alt+Left/Right` (swap in master, consume/expel in scrolling).
 - [ ] hyprshot binds if `dms screenshot` region UI disappoints.
