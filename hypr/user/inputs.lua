@@ -1,4 +1,5 @@
 -- Cursor warp, middle-click paste, scroll delay and gestures; DMS Settings covers none.
+-- A workspace swipe commits past 25% of workspace_swipe_distance (Hyprland default 50%).
 -- DMS Settings > Mouse & Touchpad does not write Hyprland config; touchpad keys live here.
 -- Hyprland ignores fcitx5's layout switch; kb_variant sets Colemak-DH for every keyboard.
 
@@ -10,6 +11,7 @@ hl.config({
 	},
 	misc = { middle_click_paste = false },
 	binds = { scroll_event_delay = 500 },
+	gestures = { workspace_swipe_min_speed_to_force = 5 },
 })
 
 local function toggle_overview()
