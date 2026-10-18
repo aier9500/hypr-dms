@@ -3,5 +3,3 @@ hypr/dms/**
 hypr/.dms-backups/
 # OpenWhispr writes its own hotkey file
 hypr/openwhispr-binds.lua
-# Hyprland: per-machine configs, scaffolded from hypr/template/*
-hypr/user/*

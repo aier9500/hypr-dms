@@ -1,8 +1,13 @@
 -- Cursor warp, middle-click paste, scroll delay and gestures; DMS Settings covers none.
--- Touchpad keys here override Settings > Mouse & Touchpad.
+-- DMS Settings > Mouse & Touchpad does not write Hyprland config; touchpad keys live here.
+-- Hyprland ignores fcitx5's layout switch; kb_variant sets Colemak-DH for every keyboard.
 
 hl.config({
-	input = { touchpad = { natural_scroll = true, clickfinger_behavior = true } },
+	input = {
+		kb_layout = "us",
+		kb_variant = "colemak_dh",
+		touchpad = { natural_scroll = true, clickfinger_behavior = true },
+	},
 	cursor = { warp_on_change_workspace = 1, warp_on_toggle_special = 1 },
 	misc = { middle_click_paste = false },
 	binds = { scroll_event_delay = 500 },

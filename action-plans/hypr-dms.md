@@ -15,7 +15,7 @@ on Fedora, and the initial commits are pushed.
 - Alt-Tab: `dankswitcher` DMS plugin on `Alt+Tab`, binds written inline in `user/binds.lua`
   (the plugin's own Lua hard-wires Super+Tab and unbinds the user's) ◆. Overview: DMS
   `dms ipc call hypr toggleOverview` on `Mod+Tab`.
-- Layout: `master` default. One bind cycles `master → dwindle → scrolling`. No notification ◆.
+- Layout: `master` default. One bind toggles `master ↔ dwindle` (scrolling dropped 2026-10-17). No notification ◆.
 - New Hyprland features: one special workspace, a resize submap, three touchpad gestures.
 - Screenshots: `dms screenshot` (ships with DMS; hyprshot is not packaged for Fedora releases) ◆.
 - Wallpapers: not copied; README links to `niri-dms/wallpapers` (108 MB would be permanent in a
@@ -30,20 +30,21 @@ on Fedora, and the initial commits are pushed.
 hypr-dms/
   README.md
   ROADMAP.md
-  .gitignore              # hypr/dms/**  hypr/.dms-backups/  hypr/user/*
+  .gitignore              # hypr/dms/**  hypr/.dms-backups/
   action-plans/hypr-dms.md
+  install.sh              # packages, dms setup on a plain dir, symlink
   hypr/
     hyprland.lua          # entry, see shape below
-    template/             # copied to hypr/user/ by the README scaffold loop
+    user/                 # tracked; edited in place
       binds.lua           # all user keybinds, resize submap, layout cycle, dankswitcher binds
       inputs.lua          # touchpad, follow_mouse, warp, middle_click_paste=false, gestures
       theme.lua           # DMS layer blur rules, dankswitcher layer rule, no-CSD env, OpenWhispr window rule
       misc.lua            # general.layout, env vars (Electron/Qt/Nix), misc toggles
-      fcitx5.lua          # fcitx5 autostart + XMODIFIERS
+      autostart.lua       # dms.service, fcitx5, XMODIFIERS
 ```
 
-`hypr/dms/*.lua` are written by `dms setup` and the DMS GUI; gitignored. `hypr/user/*` are the
-user's editable copies; gitignored.
+`hypr/dms/*.lua` are written by `dms setup` and the DMS GUI; gitignored and loaded with `pcall`.
+`hypr/user/*` are tracked. `dms/binds.lua` is never required (2026-10-17: superseded the template/user split).
 
 **Entry file shape** (`hyprland.lua`, in this order):
 1. `hl.on("hyprland.start", ...)` running `dbus-update-activation-environment --systemd --all`
@@ -82,12 +83,10 @@ user's editable copies; gitignored.
      documented equivalent). `SUPER + SHIFT + T` → `cycle_next({ floating = true })`.
    - Arrows: `SUPER + arrows` focus by direction, `SUPER + SHIFT + arrows` move window by direction.
      `SUPER + Home` → `layout("focusmaster")`, `SUPER + End` → `layout("swapwithmaster")`.
-     `SUPER + ALT + Left/Right` → `hl.dsp.layout("consume_or_expel prev|next")` plain dispatcher
-     (acts in the scrolling layout, no-op elsewhere).
    - `SUPER + Equal/Minus` → `window.resize` ±100 px width; `SUPER + SHIFT + Equal/Minus` ±100 px height.
    - `SUPER + R` → `hl.dsp.submap("resize")`; `hl.define_submap("resize", ...)`: arrows resize by
      50 px, `Escape` and `Return` → `hl.dsp.submap("reset")`.
-   - `SUPER + SHIFT + Space` → `cycle_layout`: table `{"master","dwindle","scrolling"}`, index,
+   - `SUPER + SHIFT + Space` → `toggle_layout`: master ↔ dwindle,
      `hl.config({ ["general.layout"] = ... })`. Reverts on reload; a comment says so.
    - Special workspace `scratch`: `SUPER + Grave` → `workspace.toggle_special("scratch")`;
      `SUPER + SHIFT + Grave` → `window.move({ workspace = "special:scratch" })`.
@@ -118,7 +117,7 @@ user's editable copies; gitignored.
    `misc.lua`: `general.layout = "master"` plus only master options that differ from defaults;
    `hl.env` for `ELECTRON_OZONE_PLATFORM_HINT=auto`, `QT_QPA_PLATFORM=wayland;xcb`,
    `NIXOS_OZONE_WL=1`; `misc.disable_hyprland_logo = true`.
-   `fcitx5.lua`: `hl.on("hyprland.start", ...)` exec `fcitx5 -d`; `hl.env("XMODIFIERS", "@im=fcitx")`.
+   `autostart.lua`: `hl.on("hyprland.start", ...)` starts `hyprland-session.target dms.service` and `fcitx5 -d`; `hl.env("XMODIFIERS", "@im=fcitx")`.
    Each template starts with a 1–2 line comment stating what DMS does not cover here. Comments
    `terse` per `/theoryy-docstyle`. No commented-out alternatives except the dropped list and
    the dankswitcher fallback.

@@ -6,10 +6,9 @@ hl.unbind("SUPER + Return")
 hl.unbind("SUPER + Q")
 hl.unbind("SUPER + F4")
 
-local layouts = { "master", "dwindle", "scrolling" }
 
 local function toggle_float_centered()
-	hl.dispatch(hl.dsp.window.float())
+	hl.dispatch(hl.dsp.window.float({ action = "toggle" }))
 	local w = hl.get_active_window()
 	if w and w.floating and w.monitor then
 		local m = w.monitor
@@ -19,15 +18,9 @@ local function toggle_float_centered()
 end
 
 -- Reverts to misc.lua's layout on reload.
-local function cycle_layout()
-	local current = hl.get_config("general.layout")
-	local index = 1
-	for i, name in ipairs(layouts) do
-		if name == current then
-			index = i % #layouts + 1
-		end
-	end
-	hl.config({ ["general.layout"] = layouts[index] })
+local function toggle_layout()
+	local next = hl.get_config("general.layout") == "master" and "dwindle" or "master"
+	hl.config({ ["general.layout"] = next })
 end
 
 -- Apps
@@ -70,9 +63,10 @@ hl.bind("SUPER + Q", hl.dsp.window.close())
 hl.bind("ALT + F4", hl.dsp.window.close())
 hl.bind("SUPER + F", hl.dsp.window.fullscreen({ mode = "maximized" }))
 hl.bind("SUPER + SHIFT + F", hl.dsp.window.fullscreen({ mode = "fullscreen" }))
-hl.bind("SUPER + T", toggle_float_centered, { description = "Float, 50% x 65%, centered" })
+hl.bind("SUPER + T", toggle_float_centered, { description = "Toggle floating; floats at 50% x 65%, centered" })
+hl.bind("SUPER + C", hl.dsp.window.center())
 hl.bind("SUPER + SHIFT + T", hl.dsp.window.cycle_next({ floating = true }))
-hl.bind("SUPER + SHIFT + space", cycle_layout, { description = "Cycle layout: master, dwindle, scrolling" })
+hl.bind("SUPER + SHIFT + space", toggle_layout, { description = "Toggle layout: master / dwindle" })
 
 -- Focus and move
 hl.bind("SUPER + left", hl.dsp.focus({ direction = "l" }))
@@ -83,16 +77,8 @@ hl.bind("SUPER + SHIFT + left", hl.dsp.window.move({ direction = "l" }))
 hl.bind("SUPER + SHIFT + down", hl.dsp.window.move({ direction = "d" }))
 hl.bind("SUPER + SHIFT + up", hl.dsp.window.move({ direction = "u" }))
 hl.bind("SUPER + SHIFT + right", hl.dsp.window.move({ direction = "r" }))
-hl.bind("SUPER + Home", hl.dsp.layout("focusmaster"))
-hl.bind("SUPER + End", hl.dsp.layout("swapwithmaster"))
-hl.bind("SUPER + ALT + left", hl.dsp.layout("consume_or_expel prev"))
-hl.bind("SUPER + ALT + right", hl.dsp.layout("consume_or_expel next"))
 
 -- Sizing
-hl.bind("SUPER + equal", hl.dsp.window.resize({ x = 100, y = 0, relative = true }), { repeating = true })
-hl.bind("SUPER + minus", hl.dsp.window.resize({ x = -100, y = 0, relative = true }), { repeating = true })
-hl.bind("SUPER + SHIFT + equal", hl.dsp.window.resize({ x = 0, y = 100, relative = true }), { repeating = true })
-hl.bind("SUPER + SHIFT + minus", hl.dsp.window.resize({ x = 0, y = -100, relative = true }), { repeating = true })
 hl.bind("SUPER + R", hl.dsp.submap("resize"), { description = "Resize mode" })
 hl.define_submap("resize", function()
 	hl.bind("right", hl.dsp.window.resize({ x = 50, y = 0, relative = true }), { repeating = true })

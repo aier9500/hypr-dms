@@ -1,10 +1,6 @@
 > [!NOTE]
 > Hyprland port of [niri-dms](https://github.com/aier9500/niri-dms). **Hyprland 0.56+ required** (Lua config).
 
-> [!CAUTION]
-> The commands in this README assume the repo lives at `~/.dotfiles/hypr-dms`.
-> Clone it there with the command below, or adjust the `repo=` line in each block.
-
 > [!TIP]
 > This repo uses a symlink: `~/.config/hypr` points to `~/.dotfiles/hypr-dms/hypr`. All Hyprland configs are edited in one place. `Mod` below is the Super key.
 
@@ -12,63 +8,19 @@
 
 [DMS](https://danklinux.com) (DankMaterialShell) is the shell: bar, launcher, notifications, lock screen and settings GUI. Hyprland is the compositor underneath.
 
-## To clone this repo
+## Install
+
+Fedora 44 or newer. The script enables three COPRs (community package repositories on Fedora's build service), installs Hyprland 0.56, DMS and ghostty, runs `dms setup`, and links `~/.config/hypr` to this repo. An existing `~/.config/hypr` is moved to a timestamped `.bak`.
 
 ```bash
-mkdir -p ~/.dotfiles
 git clone https://github.com/aier9500/hypr-dms ~/.dotfiles/hypr-dms
+~/.dotfiles/hypr-dms/install.sh
 ```
 
-## Install Hyprland & DMS
-
-### Installing packages on Fedora
-
-Fedora 44 or newer. Hyprland 0.56 comes from a COPR (a community package repository on Fedora's build service).
-
-```bash
-sudo dnf copr enable lionheartp/Hyprland         # hyprland 0.56
-sudo dnf copr enable avengemedia/danklinux       # quickshell, ghostty
-sudo dnf copr enable avengemedia/dms
-sudo dnf install hyprland xdg-desktop-portal-hyprland hyprland-guiutils dms ghostty
-dms setup                                        # writes ~/.config/hypr/ files and the hyprland-session.target unit
-systemctl --user add-wants hyprland-session.target dms   # DMS starts and stops with Hyprland
-```
-
-### Back up your current `~/.config/hypr`
-
-Backs up `~/.config/hypr` to `~/.config/hypr.bak`. Skips when it is already a symlink, since moving a symlink to the repo would nest the folders.
-
-```bash
-[ -d ~/.config/hypr ] && [ ! -L ~/.config/hypr ] && mv ~/.config/hypr ~/.config/hypr.bak
-```
-
-### Scaffold, then link repo Hyprland configs to `~/.config/hypr`
-
-> [!NOTE]
-> The repo supplies config templates in `hypr/template`. The block below copies them to `hypr/user` (gitignored), where you edit them.
->
-> The `hypr/dms/*.lua` files are also gitignored: DMS rewrites them (colours, cursor, outputs, GUI keybinds and window rules) as you use its GUI. The block copies the ones `dms setup` wrote from the backup, then creates empty placeholders for the rest so Hyprland does not fail on a missing `require`.
-
-```bash
-repo=~/.dotfiles/hypr-dms/hypr
-
-ln -sfn "$repo" ~/.config/hypr                 # symlink repo hypr/ to ~/.config/hypr
-mkdir -p "$repo/user" "$repo/dms"
-cp -rn "$repo/template/." "$repo/user/"        # copy templates
-cp -rn ~/.config/hypr.bak/dms/. "$repo/dms/" 2>/dev/null   # keep what dms setup wrote
-
-# Stub loop for any DMS file still missing
-for file in colors outputs layout cursor input binds binds-user windowrules; do
-  if [ ! -e "$repo/dms/$file.lua" ]; then
-    touch "$repo/dms/$file.lua"
-  fi
-done
-```
-
-Relogin and choose Hyprland. `Mod+Return` opens a terminal and `Mod+F4` quits Hyprland. After editing a file in `hypr/user`, run `hyprctl reload`.
+Relogin and choose Hyprland. `Mod+Return` opens a terminal and `Mod+F4` quits Hyprland. Hyprland reloads on every save under `hypr/user`. `hypr/user/autostart.lua` starts DMS and fcitx5; add other startup programs there.
 
 > [!WARNING]
-> **Do not re-run a full `dms setup`.** A full run always rewrites `hypr/hyprland.lua` with the DMS default, through the `~/.config/hypr` symlink, which removes this repo's `require` lines. It also refills `hypr/dms/binds.lua` with the DMS default keybinds, which then fire a second time next to the binds in `hypr/user/binds.lua`. DMS saves the replaced file under `hypr/.dms-backups/`.
+> **Do not run `dms setup` by hand.** It rewrites `hypr/hyprland.lua` with the DMS default, through the `~/.config/hypr` symlink. That file loads `dms/binds.lua`, and the run refills it, so every DMS default bind fires next to its twin in `hypr/user/binds.lua` (`Mod+M` opens two panels, `Mod+Tab` toggles the overview twice). `install.sh` runs it on a plain directory first and keeps only `dms/`. DMS saves the replaced file under `hypr/.dms-backups/`.
 >
 > To recover, restore `hypr/hyprland.lua` from git, empty `hypr/dms/binds.lua`, and reload Hyprland:
 >
@@ -85,7 +37,7 @@ Relogin and choose Hyprland. `Mod+Return` opens a terminal and `Mod+F4` quits Hy
 > Per-app window rules: `Mod+Shift+W` opens the DMS editor, which writes `dms/windowrules.lua`.
 
 > [!TIP]
-> `Mod+Shift+/` opens the DMS keybind viewer. Binds that run a Lua function, and the resize submap (`Mod+R`), are listed by their `description`.
+> `Mod+Shift+/` opens the DMS keybind viewer. Binds that run a Lua function, and the resize submap (`Mod+R`), are listed by their `description`. Binds added in the DMS GUI land in `dms/binds-user.lua` and fire alongside any `hypr/user/binds.lua` bind on the same key. The viewer reports "dms binds are not loaded" and offers to add the include; decline, or every default fires twice again.
 
 ### Alt+Tab window switcher (`dankswitcher`)
 
@@ -162,7 +114,7 @@ Wallpapers are not in this repo. Take them from [niri-dms/wallpapers](https://gi
 
 ## fcitx5 + Rime Setup (Keyboard Layout Management, Chinese)
 
-Optional — skip if you don't use multiple keyboard layouts. This repo's Hyprland config starts fcitx5 and sets `XMODIFIERS` for X11 compatibility (see `hypr/user/fcitx5.lua`). The layouts and the switch hotkey are managed in `fcitx5` itself (`fcitx5-configtool` GUI available).
+Optional — skip if you don't use multiple keyboard layouts. `hypr/user/autostart.lua` starts fcitx5 and sets `XMODIFIERS` for X11 compatibility. The layouts and the switch hotkey are managed in `fcitx5` itself (`fcitx5-configtool` GUI available). fcitx5 can only change the compositor layout on KDE and GNOME, so `hypr/user/inputs.lua` pins `kb_variant = "colemak_dh"` for Hyprland. Rime therefore receives Colemak keysyms; change `kb_variant` there if you type Rime on QWERTY.
 
 ```bash
 sudo dnf install fcitx5 fcitx5-rime fcitx5-configtool

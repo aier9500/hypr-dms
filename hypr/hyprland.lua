@@ -10,17 +10,18 @@ hl.bind("SUPER + Return", hl.dsp.exec_cmd("ghostty"))
 hl.bind("SUPER + Q", hl.dsp.window.close())
 hl.bind("SUPER + F4", hl.dsp.exit())
 
--- Later wins. hl.unbind removes only earlier binds, so DMS GUI edits (dms.binds-user) load last.
-require("dms.colors")
-require("dms.outputs")
-require("dms.layout")
-require("dms.cursor")
-require("dms.input")
-require("dms.binds")
-require("dms.windowrules")
+-- Binds stack: two hl.bind on one key both fire. hl.unbind before rebinding.
+-- dms/*.lua is written by DMS and absent on a fresh clone; pcall skips missing files.
+-- dms.binds (DMS default keybinds) is not loaded; user/binds.lua replaces it.
+pcall(require, "dms.colors")
+pcall(require, "dms.outputs")
+pcall(require, "dms.layout")
+pcall(require, "dms.cursor")
+pcall(require, "dms.input")
+pcall(require, "dms.windowrules")
 require("user.misc")
 require("user.inputs")
 require("user.theme")
-require("user.fcitx5")
+require("user.autostart")
 require("user.binds")
-require("dms.binds-user")
+pcall(require, "dms.binds-user")
