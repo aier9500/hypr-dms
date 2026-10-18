@@ -1,5 +1,6 @@
 hl.config({
 	general = { layout = "master" },
+	master = { mfact = 0.5 },
 	misc = { disable_hyprland_logo = true },
 })
 

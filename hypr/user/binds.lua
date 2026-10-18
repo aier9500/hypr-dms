@@ -88,16 +88,6 @@ hl.define_submap("resize", function()
 	hl.bind("Return", hl.dsp.submap("reset"))
 end)
 
--- Monitors
-hl.bind("SUPER + CTRL + left", hl.dsp.focus({ monitor = "l" }))
-hl.bind("SUPER + CTRL + right", hl.dsp.focus({ monitor = "r" }))
-hl.bind("SUPER + CTRL + up", hl.dsp.focus({ monitor = "u" }))
-hl.bind("SUPER + CTRL + down", hl.dsp.focus({ monitor = "d" }))
-hl.bind("SUPER + CTRL + SHIFT + left", hl.dsp.window.move({ monitor = "l" }))
-hl.bind("SUPER + CTRL + SHIFT + right", hl.dsp.window.move({ monitor = "r" }))
-hl.bind("SUPER + CTRL + SHIFT + up", hl.dsp.window.move({ monitor = "u" }))
-hl.bind("SUPER + CTRL + SHIFT + down", hl.dsp.window.move({ monitor = "d" }))
-
 -- Workspaces
 for i = 1, 9 do
 	hl.bind("SUPER + " .. i, hl.dsp.focus({ workspace = i }))
@@ -105,6 +95,8 @@ for i = 1, 9 do
 end
 hl.bind("SUPER + Page_Down", hl.dsp.focus({ workspace = "r+1" }))
 hl.bind("SUPER + Page_Up", hl.dsp.focus({ workspace = "r-1" }))
+hl.bind("SUPER + CTRL + right", hl.dsp.focus({ workspace = "r+1" }))
+hl.bind("SUPER + CTRL + left", hl.dsp.focus({ workspace = "r-1" }))
 hl.bind("SUPER + SHIFT + Page_Down", hl.dsp.window.move({ workspace = "r+1" }))
 hl.bind("SUPER + SHIFT + Page_Up", hl.dsp.window.move({ workspace = "r-1" }))
 hl.bind("SUPER + mouse_down", hl.dsp.focus({ workspace = "r+1" }))
