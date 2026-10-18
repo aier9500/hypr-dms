@@ -36,10 +36,10 @@ hl.bind("SUPER + SHIFT + R", hl.dsp.exec_cmd("flatpak run com.dec05eba.gpu_scree
 hl.bind("SUPER + SHIFT + Slash", hl.dsp.exec_cmd("dms ipc call keybinds toggle hyprland"))
 hl.bind("SUPER + Y", hl.dsp.exec_cmd("dms ipc call dankdash wallpaper"))
 hl.bind("SUPER + D", hl.dsp.exec_cmd("dms ipc call dash toggle overview"))
-hl.bind("SUPER + S", hl.dsp.exec_cmd("dms ipc call control-center toggle"))
-hl.bind("SUPER + M", hl.dsp.exec_cmd("dms ipc call notifications toggle"))
-hl.bind("SUPER + A", hl.dsp.exec_cmd("dms ipc call spotlight toggle"))
-hl.bind("SUPER + N", hl.dsp.exec_cmd("dms ipc call notepad toggle"))
+hl.bind("SUPER + A", hl.dsp.exec_cmd("dms ipc call control-center toggle"))
+hl.bind("SUPER + N", hl.dsp.exec_cmd("dms ipc call notifications toggle"))
+hl.bind("SUPER + S", hl.dsp.exec_cmd("dms ipc call spotlight toggle"))
+hl.bind("SUPER + M", hl.dsp.exec_cmd("dms ipc call notepad toggle"))
 hl.bind("SUPER + SHIFT + W", hl.dsp.exec_cmd("dms ipc call window-rules toggle"))
 hl.bind("SUPER + CTRL + SHIFT + D", hl.dsp.exec_cmd("dms ipc call theme toggle"))
 
@@ -50,12 +50,7 @@ hl.bind("SUPER + F4", hl.dsp.exit())
 
 -- Overview and window switcher
 hl.bind("SUPER + Tab", hl.dsp.exec_cmd("dms ipc call hypr toggleOverview"))
-hl.bind("SUPER + SHIFT + Tab", hl.dsp.exec_cmd("dms ipc call hypr closeOverview"))
-hl.bind("ALT + Tab", hl.dsp.global("dankswitcher:next"))
-hl.bind("ALT + SHIFT + Tab", hl.dsp.global("dankswitcher:prev"))
-hl.bind("ALT + ALT_L", hl.dsp.global("dankswitcher:select"), { release = true })
-hl.bind("ALT + ALT_R", hl.dsp.global("dankswitcher:select"), { release = true })
--- Without dankswitcher: hl.bind("ALT + Tab", hl.dsp.focus({ last = true }))
+hl.bind("ALT + Tab", hl.dsp.focus({ last = true }))
 
 -- Windows
 hl.bind("SUPER + Q", hl.dsp.window.close())
