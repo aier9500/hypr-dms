@@ -2,7 +2,10 @@
 hl.on("hyprland.start", function()
 	hl.exec_cmd("dbus-update-activation-environment --systemd --all")
 	hl.exec_cmd("systemctl --user start hyprland-session.target")
+	hl.exec_cmd("fcitx5 -d")
 end)
+
+hl.env("XMODIFIERS", "@im=fcitx")
 -- DMS_STARTUP_END
 
 -- Emergency binds: a broken user file can sitll open the terminal
@@ -18,7 +21,6 @@ pcall(require, "dms.layout")
 pcall(require, "dms.outputs")
 pcall(require, "dms.windowrules")
 pcall(require, "$HOME/.config/hypr/openwhispr-binds.lua")
-require("user.autostart")
 require("user.binds")
 require("user.inputs")
 require("user.misc")

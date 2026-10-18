@@ -19,5 +19,5 @@ local function toggle_overview()
 end
 
 hl.gesture({ fingers = 3, direction = "horizontal", action = "workspace" })
-hl.gesture({ fingers = 4, direction = "up", action = toggle_overview })
+hl.gesture({ fingers = 3, direction = "up", action = toggle_overview })
 hl.gesture({ fingers = 3, direction = "down", action = "special", workspace_name = "scratch" })
