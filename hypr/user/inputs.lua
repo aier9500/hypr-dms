@@ -8,7 +8,6 @@ hl.config({
 		kb_variant = "colemak_dh",
 		touchpad = { natural_scroll = true, clickfinger_behavior = true },
 	},
-	cursor = { warp_on_change_workspace = 1, warp_on_toggle_special = 1 },
 	misc = { middle_click_paste = false },
 	binds = { scroll_event_delay = 500 },
 })
@@ -19,4 +18,4 @@ end
 
 hl.gesture({ fingers = 3, direction = "horizontal", action = "workspace" })
 hl.gesture({ fingers = 4, direction = "up", action = toggle_overview })
-hl.gesture({ fingers = 3, direction = "pinchin", action = "special", workspace_name = "scratch" })
+hl.gesture({ fingers = 3, direction = "down", action = "special", workspace_name = "scratch" })

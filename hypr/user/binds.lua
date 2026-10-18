@@ -25,7 +25,6 @@ end
 
 -- Apps
 hl.bind("SUPER + Return", hl.dsp.exec_cmd("ghostty"))
-hl.bind("SUPER + SHIFT + Return", hl.dsp.exec_cmd("flatpak run md.obsidian.Obsidian"))
 hl.bind("CTRL + SHIFT + Escape", hl.dsp.exec_cmd("flatpak run io.missioncenter.MissionCenter"))
 hl.bind("ALT + space", hl.dsp.exec_cmd("dbus-send --session --type=method_call --dest=com.openwhispr.App /com/openwhispr/App com.openwhispr.App.Toggle"))
 hl.bind("SUPER + E", hl.dsp.exec_cmd("nautilus"))

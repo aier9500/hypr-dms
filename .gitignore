@@ -1,5 +1,3 @@
 # DMS auto-generated
 hypr/dms/**
 hypr/.dms-backups/
-# OpenWhispr writes its own hotkey file
-hypr/openwhispr-binds.lua

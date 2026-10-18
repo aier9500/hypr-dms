@@ -1,5 +1,3 @@
--- Default layout, toolkit env vars and logo; DMS covers none of these.
-
 hl.config({
 	general = { layout = "master" },
 	misc = { disable_hyprland_logo = true },
