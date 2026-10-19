@@ -4,7 +4,9 @@ hl.on("hyprland.start", function()
 	hl.exec_cmd("systemctl --user start hyprland-session.target")
 	hl.exec_cmd("fcitx5 -d")
 	hl.exec_cmd("dms run")
-	hl.exec_cmd("hyprshell run")
+	-- uses full dir here b/c fedora has to install hyprshell
+	-- via cargo, and cargo is not in hyprland PATH
+    hl.exec_cmd("$HOME/.cargo/bin/hyprshell run")
 end)
 
 hl.env("XMODIFIERS", "@im=fcitx")
