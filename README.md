@@ -38,3 +38,11 @@ set `lockPamPath` to the `dankshell-gaze` file as such:
 ```json
 "lockPamPath": "/home/aier/.local/state/DankMaterialShell/pam/dankshell-gaze",
 ```
+
+# Overview and App Switcher
+
+This repo uses `hyprshell` for overview and app switcher, configurate with:
+
+```bash
+hyprshell config edit
+```

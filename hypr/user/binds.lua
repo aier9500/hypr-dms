@@ -48,10 +48,6 @@ hl.bind("CTRL + ALT + Delete", hl.dsp.exec_cmd("dms ipc call powermenu toggle"))
 hl.bind("SUPER + L", hl.dsp.exec_cmd("dms ipc call lock lock"))
 hl.bind("SUPER + F4", hl.dsp.exit())
 
--- Overview and window switcher
-hl.bind("SUPER + Tab", hl.dsp.exec_cmd("dms ipc call hypr toggleOverview"))
-hl.bind("ALT + Tab", hl.dsp.focus({ last = true }))
-
 -- Windows
 hl.bind("SUPER + Q", hl.dsp.window.close())
 hl.bind("ALT + F4", hl.dsp.window.close())
