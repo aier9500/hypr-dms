@@ -43,6 +43,9 @@ hl.bind("SUPER + M", hl.dsp.exec_cmd("dms ipc call notepad toggle"))
 hl.bind("SUPER + SHIFT + W", hl.dsp.exec_cmd("dms ipc call window-rules toggle"))
 hl.bind("SUPER + CTRL + SHIFT + D", hl.dsp.exec_cmd("dms ipc call theme toggle"))
 
+-- Hyprland overview
+hl.bind("SUPER + Tab", hl.dsp.exec_cmd("dms ipc call hypr toggleOverview"))
+
 -- Session
 hl.bind("CTRL + ALT + Delete", hl.dsp.exec_cmd("dms ipc call powermenu toggle"))
 hl.bind("SUPER + L", hl.dsp.exec_cmd("dms ipc call lock lock"))

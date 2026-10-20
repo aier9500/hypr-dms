@@ -13,7 +13,3 @@ systemctl --user enable dms.service
 
 sudo dnf install -y libadwaita-devel gtk4-layer-shell-devel
 cargo install hyprshell
-
-# Wluma auto brightness
-
-sudo dnf install -y wluma
