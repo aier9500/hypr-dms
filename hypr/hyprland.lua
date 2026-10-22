@@ -7,6 +7,7 @@ hl.on("hyprland.start", function()
 	-- uses full dir here b/c fedora has to install hyprshell
 	-- via cargo, and cargo is not in hyprland PATH
     hl.exec_cmd("$HOME/.cargo/bin/hyprshell run")
+	hl.exec_cmd("flatpak run io.github.zarestia_dev.rclone-manager")
 end)
 
 hl.env("XMODIFIERS", "@im=fcitx")
