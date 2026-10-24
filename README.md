@@ -39,16 +39,6 @@ set `lockPamPath` to the `dankshell-gaze` file as such:
 "lockPamPath": "/home/aier/.local/state/DankMaterialShell/pam/dankshell-gaze",
 ```
 
-# ProArt Key
-
-The ProArt key (top-right, next to power) sends a raw HID report the kernel doesn't map to any key, so Hyprland and keyd never see it. `proart-key/` holds a listener that reads the keyboard's `hidraw` device and toggles the Dank ASUS Control popout, G-Helper style.
-
-```bash
-./proart-key/install.sh    # already run by dependency.sh
-```
-
-Installs a udev rule (the one `sudo` step), the script to `~/.local/bin`, and a user service. Change `ACTION` in `proart-key/proart-key` to run something else.
-
 # App Switcher
 
 This repo uses `hyprshell` for app switcher, configure with:
@@ -56,3 +46,8 @@ This repo uses `hyprshell` for app switcher, configure with:
 ```bash
 hyprshell config edit
 ```
+
+# ProArt Key Toggle DankAsusControl
+
+- Creates a service that listens to the keypress (not supported by the Linux kernel by default as of 2026-10-24).
+- Makes it toggle DankAsusControl (custom fork).
