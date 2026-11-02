@@ -39,14 +39,6 @@ set `lockPamPath` to the `dankshell-gaze` file as such:
 "lockPamPath": "/home/aier/.local/state/DankMaterialShell/pam/dankshell-gaze",
 ```
 
-# App Switcher
-
-This repo uses `hyprshell` for app switcher, configure with:
-
-```bash
-hyprshell config edit
-```
-
 # ProArt Key Toggle DankAsusControl
 
 - Creates a service that listens to the keypress (not supported by the Linux kernel by default as of 2026-10-24).

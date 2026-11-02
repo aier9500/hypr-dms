@@ -9,11 +9,6 @@ sudo dnf install -y dms
 
 systemctl --user enable dms.service
 
-# Hyprshell Alt-Tab switcher
-
-sudo dnf install -y libadwaita-devel gtk4-layer-shell-devel
-cargo install hyprshell
-
 # Dank ASUS Control Center (DMS bar widget: power profile, wattage, dGPU, cardwire)
 
 sudo dnf install -y asusctl asusctl-rog-gui    # needs Terra repo
