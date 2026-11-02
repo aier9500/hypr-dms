@@ -27,6 +27,7 @@ end
 -- hl.bind("SUPER + Return", hl.dsp.exec_cmd("ghostty"))
 hl.bind("CTRL + SHIFT + Escape", hl.dsp.exec_cmd("flatpak run io.missioncenter.MissionCenter"))
 hl.bind("SUPER + W", hl.dsp.exec_cmd("dbus-send --session --type=method_call --dest=com.openwhispr.App /com/openwhispr/App com.openwhispr.App.Toggle"))
+hl.bind("SUPER + grave", hl.dsp.exec_cmd("dbus-send --session --type=method_call --dest=com.openwhispr.App /com/openwhispr/App com.openwhispr.App.Toggle"))
 hl.bind("SUPER + E", hl.dsp.exec_cmd("nautilus"))
 hl.bind("SUPER + V", hl.dsp.exec_cmd("dms ipc call clipboard toggle"))
 hl.bind("SUPER + I", hl.dsp.exec_cmd("dms ipc call settings focusOrToggle"))
@@ -102,7 +103,7 @@ hl.bind("SUPER + mouse_down", hl.dsp.focus({ workspace = "r+1" }))
 hl.bind("SUPER + mouse_up", hl.dsp.focus({ workspace = "r-1" }))
 hl.bind("SUPER + mouse_right", hl.dsp.focus({ direction = "r" }))
 hl.bind("SUPER + mouse_left", hl.dsp.focus({ direction = "l" }))
-hl.bind("SUPER + grave", hl.dsp.workspace.toggle_special("scratch"))
+hl.bind("ALT + Tab", hl.dsp.workspace.toggle_special("scratch"))
 hl.bind("SUPER + SHIFT + grave", hl.dsp.window.move({ workspace = "special:scratch" }))
 
 -- Screenshots
