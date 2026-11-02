@@ -24,9 +24,9 @@ local function toggle_layout()
 end
 
 -- Apps
--- hl.bind("SUPER + Return", hl.dsp.exec_cmd("ghostty"))
-hl.bind("CTRL + SHIFT + Escape", hl.dsp.exec_cmd("flatpak run io.missioncenter.MissionCenter"))
-hl.bind("SUPER + grave", hl.dsp.exec_cmd("dbus-send --session --type=method_call --dest=com.openwhispr.App /com/openwhispr/App com.openwhispr.App.Toggle"))
+hl.bind("SUPER + Return", hl.dsp.exec_cmd("ghostty"))
+hl.bind("SUPER + M", hl.dsp.exec_cmd("flatpak run io.missioncenter.MissionCenter"))
+hl.bind("SUPER + H", hl.dsp.exec_cmd("dbus-send --session --type=method_call --dest=com.openwhispr.App /com/openwhispr/App com.openwhispr.App.Toggle"))
 hl.bind("SUPER + E", hl.dsp.exec_cmd("nautilus"))
 hl.bind("SUPER + V", hl.dsp.exec_cmd("dms ipc call clipboard toggle"))
 hl.bind("SUPER + I", hl.dsp.exec_cmd("dms ipc call settings focusOrToggle"))
@@ -40,7 +40,7 @@ hl.bind("SUPER + A", hl.dsp.exec_cmd("dms ipc call control-center toggle"))
 hl.bind("SUPER + N", hl.dsp.exec_cmd("dms ipc call notifications toggle"))
 hl.bind("SUPER + S", hl.dsp.exec_cmd("dms ipc call launcher toggle"))
 hl.bind("ALT + space", hl.dsp.exec_cmd("dms ipc call spotlight-bar toggle"))
-hl.bind("SUPER + M", hl.dsp.exec_cmd("dms ipc call notepad toggle"))
+hl.bind("SUPER + W", hl.dsp.exec_cmd("dms ipc call notepad toggle"))
 hl.bind("SUPER + SHIFT + W", hl.dsp.exec_cmd("dms ipc call window-rules toggle"))
 hl.bind("SUPER + CTRL + SHIFT + D", hl.dsp.exec_cmd("dms ipc call theme toggle"))
 
