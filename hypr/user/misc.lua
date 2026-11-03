@@ -7,6 +7,14 @@ hl.config({
 	render = { cm_auto_hdr = 0 },
 })
 
+-- screen-share picker opens at 0,0: off-screen when the Dell (at 0x0) is unplugged
+hl.window_rule({
+	name = "center-share-picker",
+	match = { class = "^hyprland-share-picker$" },
+	float = true,
+	center = true,
+})
+
 hl.env("ELECTRON_OZONE_PLATFORM_HINT", "auto")
 hl.env("QT_QPA_PLATFORM", "wayland;xcb")
 hl.env("NIXOS_OZONE_WL", "1")
