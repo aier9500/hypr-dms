@@ -1,5 +1,4 @@
 -- All keybinds except workspaces (user/workspaces.lua). DMS GUI edits go to dms/binds-user.lua, loaded after this file.
--- Dropped from Niri: toggle-keyboard-shortcuts-inhibit, center-column, center-visible-columns, move-workspace-up/down, switch-preset-column-width, reset-window-height, per-bind cooldown-ms.
 
 -- Take over the emergency binds from hyprland.lua.
 hl.unbind("SUPER + Return")
@@ -17,7 +16,7 @@ local function toggle_float_centered()
 	end
 end
 
--- Reverts to misc.lua's layout on reload.
+-- Reverts to dms/layout.lua's layout on reload.
 local function toggle_layout()
 	local next = hl.get_config("general.layout") == "master" and "dwindle" or "master"
 	hl.config({ ["general.layout"] = next })
@@ -85,7 +84,6 @@ hl.define_submap("resize", function()
 	hl.bind("Return", hl.dsp.submap("reset"))
 end)
 
--- Workspaces
 -- Workspaces: numbered and next/previous binds live in user/workspaces.lua
 hl.bind("SUPER + mouse_right", hl.dsp.focus({ direction = "r" }))
 hl.bind("SUPER + mouse_left", hl.dsp.focus({ direction = "l" }))
