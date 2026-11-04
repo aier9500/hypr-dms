@@ -87,8 +87,8 @@ end)
 -- Workspaces: numbered and next/previous binds live in user/workspaces.lua
 hl.bind("SUPER + mouse_right", hl.dsp.focus({ direction = "r" }))
 hl.bind("SUPER + mouse_left", hl.dsp.focus({ direction = "l" }))
-hl.bind("ALT + Tab", hl.dsp.workspace.toggle_special("scratch"))
-hl.bind("ALT + SHIFT + Tab", hl.dsp.window.move({ workspace = "special:scratch" }))
+hl.bind("SUPER + X", hl.dsp.workspace.toggle_special("scratch"))
+hl.bind("SUPER + SHIFT + X", hl.dsp.window.move({ workspace = "special:scratch" }))
 
 -- Screenshots
 hl.bind("Print", hl.dsp.exec_cmd("dms screenshot"))
