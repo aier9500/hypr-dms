@@ -4,7 +4,6 @@ hl.on("hyprland.start", function()
 	hl.exec_cmd("systemctl --user start hyprland-session.target")
 	hl.exec_cmd("fcitx5 -d")
 	hl.exec_cmd("dms run")
-	hl.exec_cmd("flatpak run io.github.zarestia_dev.rclone-manager")
 end)
 
 hl.env("XMODIFIERS", "@im=fcitx")

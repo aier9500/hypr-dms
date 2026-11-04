@@ -15,5 +15,10 @@ hl.window_rule({
 	center = true,
 })
 
+-- Own autostarts go here: `dms setup` rewrites hyprland.lua's DMS_STARTUP block.
+hl.on("hyprland.start", function()
+	hl.exec_cmd("flatpak run io.github.zarestia_dev.rclone-manager")
+end)
+
 hl.env("ELECTRON_OZONE_PLATFORM_HINT", "auto")
 hl.env("QT_QPA_PLATFORM", "wayland;xcb")
