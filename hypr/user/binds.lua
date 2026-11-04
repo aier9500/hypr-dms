@@ -1,4 +1,4 @@
--- All keybinds. DMS GUI edits go to dms/binds-user.lua, loaded after this file.
+-- All keybinds except workspaces (user/workspaces.lua). DMS GUI edits go to dms/binds-user.lua, loaded after this file.
 -- Dropped from Niri: toggle-keyboard-shortcuts-inhibit, center-column, center-visible-columns, move-workspace-up/down, switch-preset-column-width, reset-window-height, per-bind cooldown-ms.
 
 -- Take over the emergency binds from hyprland.lua.
@@ -86,20 +86,7 @@ hl.define_submap("resize", function()
 end)
 
 -- Workspaces
-for i = 1, 9 do
-	hl.bind("SUPER + " .. i, hl.dsp.focus({ workspace = i }))
-	hl.bind("SUPER + SHIFT + " .. i, hl.dsp.window.move({ workspace = i }))
-end
-hl.bind("SUPER + Page_Down", hl.dsp.focus({ workspace = "r+1" }))
-hl.bind("SUPER + Page_Up", hl.dsp.focus({ workspace = "r-1" }))
-hl.bind("SUPER + CTRL + right", hl.dsp.focus({ workspace = "r+1" }))
-hl.bind("SUPER + CTRL + left", hl.dsp.focus({ workspace = "r-1" }))
-hl.bind("SUPER + SHIFT + Page_Down", hl.dsp.window.move({ workspace = "r+1" }))
-hl.bind("SUPER + SHIFT + Page_Up", hl.dsp.window.move({ workspace = "r-1" }))
-hl.bind("SUPER + CTRL + SHIFT + right", hl.dsp.window.move({ workspace = "r+1" }))
-hl.bind("SUPER + CTRL + SHIFT + left", hl.dsp.window.move({ workspace = "r-1" }))
-hl.bind("SUPER + mouse_down", hl.dsp.focus({ workspace = "r+1" }))
-hl.bind("SUPER + mouse_up", hl.dsp.focus({ workspace = "r-1" }))
+-- Workspaces: numbered and next/previous binds live in user/workspaces.lua
 hl.bind("SUPER + mouse_right", hl.dsp.focus({ direction = "r" }))
 hl.bind("SUPER + mouse_left", hl.dsp.focus({ direction = "l" }))
 hl.bind("ALT + Tab", hl.dsp.workspace.toggle_special("scratch"))
