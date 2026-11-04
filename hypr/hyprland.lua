@@ -9,7 +9,7 @@ end)
 hl.env("XMODIFIERS", "@im=fcitx")
 -- DMS_STARTUP_END
 
--- Emergency binds: a broken user file can sitll open the terminal
+-- Emergency binds: a broken user file can still open the terminal
 hl.bind("SUPER + Return", hl.dsp.exec_cmd("ghostty"))
 hl.bind("SUPER + Q", hl.dsp.window.close())
 hl.bind("SUPER + F4", hl.dsp.exit())
@@ -21,9 +21,10 @@ pcall(require, "dms.input")
 pcall(require, "dms.layout")
 pcall(require, "dms.outputs")
 pcall(require, "dms.windowrules")
+-- inputs first: an error in a later file still leaves Colemak-DH loaded
+require("user.inputs")
 require("user.binds")
 require("user.workspaces")
-require("user.inputs")
 require("user.misc")
 require("user.theme")
 pcall(require, "/home/aier/.config/hypr/openwhispr-binds.lua")
