@@ -1,6 +1,6 @@
 # First Steps
 
-Run the `dependency.sh` to install all the programs used in this repo. It also installs [Dank ASUS Control Center](https://github.com/aier9500/DankAsusControl) into DMS plugins; add `dankAsusControlCenter` to a bar section in DMS settings afterwards.
+Run the `dependency.sh` to install all the programs used in this repo. It links `hypr/` to `~/.config/hypr` (an existing folder moves to `~/.config/hypr.bak`) and `config.jsonc`, the fastfetch config, to `~/.config/fastfetch/`. It also installs [Dank ASUS Control Center](https://github.com/aier9500/DankAsusControl) into DMS plugins; add `dankAsusControlCenter` to a bar section in DMS settings afterwards.
 
 # Lockscreen Optimisation With Gaze
 
