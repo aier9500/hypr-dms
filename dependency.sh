@@ -7,8 +7,6 @@ sudo dnf install -y ghostty
 sudo dnf copr enable -y avengemedia/dms
 sudo dnf install -y dms
 
-systemctl --user enable dms.service
-
 # Dank ASUS Control Center (DMS bar widget: power profile, wattage, dGPU, cardwire)
 
 sudo dnf install -y asusctl asusctl-rog-gui    # needs Terra repo
