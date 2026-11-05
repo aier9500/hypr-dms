@@ -7,9 +7,7 @@ hl.config({
 	input = {
 		kb_layout = "us",
 		kb_variant = "colemak_dh",
-		touchpad = { clickfinger_behavior = true },
 	},
-	misc = { middle_click_paste = false },
 	binds = { scroll_event_delay = 500 },
 	gestures = { workspace_swipe_min_speed_to_force = 5 },
 })
