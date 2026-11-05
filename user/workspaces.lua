@@ -1,6 +1,6 @@
--- Per-monitor workspaces 1-10, numbered on the focused monitor (hyprsplit, vendored in ../hyprsplit).
+-- Per-monitor workspaces 1-10, numbered on the focused monitor (hyprsplit, vendored in hyprsplit/).
 -- force_monitor_priority: monitors ranked by name, so a lone monitor always owns 1-10; with two, DP-* gets 1-10, eDP-1 11-20.
-local hs = require("hyprsplit")
+local hs = require("user.hyprsplit")
 hs.config({ num_workspaces = 10, force_monitor_priority = true })
 
 for i = 1, 10 do

@@ -1,10 +1,4 @@
--- All keybinds except workspaces (user/workspaces.lua). DMS GUI edits go to dms/binds-user.lua, loaded after this file.
-
--- Take over the emergency binds from hyprland.lua.
-hl.unbind("SUPER + Return")
-hl.unbind("SUPER + Q")
-hl.unbind("SUPER + F4")
-
+-- Default keybinds except workspaces (user/workspaces.lua). DMS GUI overrides (dms/binds-user.lua) load after and win.
 
 local function toggle_float_centered()
 	hl.dispatch(hl.dsp.window.float({ action = "toggle" }))
@@ -24,12 +18,9 @@ end
 
 -- Apps
 hl.bind("SUPER + Return", hl.dsp.exec_cmd("ghostty"))
-hl.bind("SUPER + M", hl.dsp.exec_cmd("flatpak run io.missioncenter.MissionCenter"))
-hl.bind("SUPER + H", hl.dsp.exec_cmd("dbus-send --session --type=method_call --dest=com.openwhispr.App /com/openwhispr/App com.openwhispr.App.Toggle"))
 hl.bind("SUPER + E", hl.dsp.exec_cmd("nautilus"))
 hl.bind("SUPER + V", hl.dsp.exec_cmd("dms ipc call clipboard toggle"))
 hl.bind("SUPER + I", hl.dsp.exec_cmd("dms ipc call settings focusOrToggle"))
-hl.bind("SUPER + SHIFT + R", hl.dsp.exec_cmd("flatpak run com.dec05eba.gpu_screen_recorder/x86_64/stable"))
 
 -- DMS components
 hl.bind("SUPER + SHIFT + Slash", hl.dsp.exec_cmd("dms ipc call keybinds toggle hyprland"))
@@ -42,6 +33,7 @@ hl.bind("ALT + space", hl.dsp.exec_cmd("dms ipc call spotlight-bar toggle"))
 hl.bind("SUPER + W", hl.dsp.exec_cmd("dms ipc call notepad toggle"))
 hl.bind("SUPER + SHIFT + W", hl.dsp.exec_cmd("dms ipc call window-rules toggle"))
 hl.bind("SUPER + CTRL + SHIFT + D", hl.dsp.exec_cmd("dms ipc call theme toggle"))
+hl.bind("SUPER + M", hl.dsp.exec_cmd("dms ipc call processlist focusOrToggle"))
 
 -- Hyprland overview
 hl.bind("SUPER + Tab", hl.dsp.exec_cmd("dms ipc call hypr toggleOverview"))
@@ -114,3 +106,8 @@ hl.bind("CTRL + XF86AudioLowerVolume", hl.dsp.exec_cmd("dms ipc call mpris decre
 -- Brightness
 hl.bind("XF86MonBrightnessUp", hl.dsp.exec_cmd([[dms ipc call brightness increment 5 ""]]), { locked = true, repeating = true })
 hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd([[dms ipc call brightness decrement 5 ""]]), { locked = true, repeating = true })
+
+-- Touchpad gestures
+hl.gesture({ fingers = 3, direction = "horizontal", action = "workspace" })
+hl.gesture({ fingers = 3, direction = "up", action = function() hl.exec_cmd("dms ipc call hypr toggleOverview") end })
+hl.gesture({ fingers = 3, direction = "down", action = "special", workspace_name = "scratch" })
