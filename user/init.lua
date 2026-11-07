@@ -13,6 +13,7 @@ end)
 hl.config({
 	binds = { scroll_event_delay = 500 }, -- Super+scroll: one workspace per 500 ms
 	gestures = { workspace_swipe_min_speed_to_force = 5 }, -- slow swipes still switch
+	input = { focus_on_close = 1 }, -- after a close, focus the window now under the cursor, not the layout's pick
 })
 
 -- iOS easing, cubic-bezier(0.32, 0.72, 0, 1). Stock hyprland.lua sets these leaves itself; global alone misses them.

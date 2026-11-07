@@ -5,6 +5,7 @@ A thin layer over [DankMaterialShell](https://github.com/AvengeMedia/DankMateria
 - Windows-style keybinds (`user/binds.lua`); DMS's keybind editor overrides any of them
 - per-monitor workspaces 1–10, like niri (`user/workspaces.lua`)
 - fcitx5 for Chinese input, touchpad gesture tuning, the iOS animation curve, a centred screen-share picker (`user/init.lua`)
+- focus cues: only the focused window has a border; closing a window focuses the one under the cursor (`user/init.lua`); a keyboard workspace switch moves the pointer onto the focused window (`user/workspaces.lua`)
 
 # Install (Fedora)
 
