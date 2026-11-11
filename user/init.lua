@@ -3,8 +3,10 @@
 
 require("user.binds")
 require("user.workspaces")
+pcall(require, "user.local")
 
--- Chinese input. DMS rewrites only hyprland.lua's DMS_STARTUP block; autostarts live here.
+
+-- Fcitx5 for CJK. Other autostarts: DMS Settings → Autostart.
 hl.env("XMODIFIERS", "@im=fcitx")
 hl.on("hyprland.start", function()
 	hl.exec_cmd("fcitx5 -d")
@@ -20,18 +22,4 @@ hl.config({
 hl.curve("apple", { type = "bezier", points = { { 0.32, 0.72 }, { 0, 1 } } })
 for _, leaf in ipairs({ "global", "windowsIn", "windowsOut", "windowsMove", "workspaces", "fade", "border" }) do
 	hl.animation({ leaf = leaf, enabled = true, speed = 4, bezier = "apple" })
-end
-
--- Screen-share picker opens at 0,0: off-screen when no monitor sits there.
-hl.window_rule({
-	name = "center-share-picker",
-	match = { class = "^hyprland-share-picker$" },
-	float = true,
-	center = true,
-})
-
--- Personal additions outside the repo: ~/.config/hypr/local.lua, loaded if present.
-local ok, err = pcall(require, "local")
-if not ok and not tostring(err):find("module 'local' not found", 1, true) then
-	error(err, 0)
 end
