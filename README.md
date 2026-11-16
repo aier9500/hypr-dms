@@ -2,6 +2,9 @@
 
 Hyprland that works out of the box. [DankMaterialShell](https://github.com/AvengeMedia/DankMaterialShell) (DMS) gives you the bar, launcher, settings app and lock screen. This repo adds Windows-style shortcuts, workspaces per monitor, smooth iOS-style animations, CJK input, and fixes for hardware Hyprland doesn't handle on its own.
 
+> [!WARNING] 2026-11-16: THIS REPO IS NO LONGER CURATED
+> Due to a lack of time, this repo has become personalised dotfile that is no longer designed to be a vanilla default (that's what DMS does).
+
 # Install (Fedora)
 
 Paste this into a terminal:
